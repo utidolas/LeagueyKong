@@ -48,10 +48,6 @@ public class ScriptGameManager : MonoBehaviour
     private void LoadScene()
     {
         SceneManager.LoadScene(currLevel);
-
-        // Writing score
-        scoreController = GameObject.Find("alcool").GetComponent<TextMeshProUGUI>();
-        scoreController.text = "alcool: " + score + "%";
     }
 
     public void LevelFailed()
@@ -69,8 +65,7 @@ public class ScriptGameManager : MonoBehaviour
 
     public void LevelComplete()
     {
-        score += 20;
-        AddScore(score);
+        AddScore(20);
         int nextLevel = currLevel + 1;
         if(nextLevel < SceneManager.sceneCountInBuildSettings)
         {

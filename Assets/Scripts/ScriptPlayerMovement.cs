@@ -20,7 +20,6 @@ public class ScriptPlayerMovement : MonoBehaviour
     // Vars
     private Vector2 dir;
     private Collider2D collid;
-    private BoxCollider2D playerBoxCollider;
     private Collider2D[] results;
     private bool grounded;
     private bool climbing;
@@ -30,9 +29,13 @@ public class ScriptPlayerMovement : MonoBehaviour
         gameManager = FindObjectOfType<ScriptGameManager>();
         rb = GetComponent<Rigidbody2D>();
         collid = GetComponent<Collider2D>();
-        playerBoxCollider = GetComponent<BoxCollider2D>();
         anim = GetComponent<Animator>();
         results = new Collider2D[5];
+    }
+
+    private void Start()
+    {
+        gameManager.AddScore(0);
     }
 
     private void Update()
@@ -98,9 +101,6 @@ public class ScriptPlayerMovement : MonoBehaviour
     // CHECK TRIGGER COLLISION
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        // Shrink collision
-        playerBoxCollider.size = new Vector2(1, 0.5f);
-        playerBoxCollider.offset = new Vector2(1, -0.25f);
 
         if (collision.gameObject.CompareTag("ScoreCounter"))
         {
