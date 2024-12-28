@@ -186,7 +186,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: -0.15154815}
+  m_Offset: {x: 0, y: 0.29464817}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -197,7 +197,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 6.0384364}
+  m_Size: {x: 1, y: 5.146044}
   m_EdgeRadius: 0
 --- !u!1 &50930716
 GameObject:
@@ -703,7 +703,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bc961dc425dd2d44b846fe9db895eee1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spawnObj: {fileID: 7891892616055675741, guid: a1781ab618807754ea3dea161563e77d, type: 3}
+  spawnObj: {fileID: 1395203267772005072, guid: 86add04c8e2615149b648decbd255fc0, type: 3}
   minTime: 1.5
   maxTime: 3.5
 --- !u!4 &364534367
@@ -883,6 +883,7 @@ GameObject:
   - component: {fileID: 519420032}
   - component: {fileID: 519420031}
   - component: {fileID: 519420029}
+  - component: {fileID: 519420033}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -964,6 +965,23 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &519420033
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 519420028}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d5de90dd7a326984295bc2a339236997, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameManager: {fileID: 0}
+  waveSpeed: 1.5
+  waveAmplitude: 0
+  shakeIntensity: 0
+  shakeFrequency: 8
 --- !u!1 &531677797
 GameObject:
   m_ObjectHideFlags: 0
@@ -2698,7 +2716,7 @@ GameObject:
   - component: {fileID: 1979333928}
   m_Layer: 0
   m_Name: Barrier (4)
-  m_TagString: Untagged
+  m_TagString: Finish
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2903,34 +2921,8 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 1698617047960628830, guid: e21caaf5ea2495144a016e4b5c85395b, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 2133737049}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e21caaf5ea2495144a016e4b5c85395b, type: 3}
---- !u!1 &2133737048 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1698617047960628830, guid: e21caaf5ea2495144a016e4b5c85395b, type: 3}
-  m_PrefabInstance: {fileID: 2133737047}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &2133737049
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2133737048}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: edbdb18a1a642e746b79e347418bd35f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  gameManager: {fileID: 0}
-  health: 0
-  maxHealth: 2
-  fullHeart: {fileID: 0}
-  emptyHeart: {fileID: 0}
-  hearts: []
 --- !u!1001 &4494473708961337356
 PrefabInstance:
   m_ObjectHideFlags: 0

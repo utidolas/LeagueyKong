@@ -21,6 +21,12 @@ public class ScriptBarrel : MonoBehaviour
         {
             rb.AddForce(collision.transform.right * -speed, ForceMode2D.Impulse);
         }
+
+        if (collision.gameObject.CompareTag("Finish"))
+        {
+            Transform parentTransform = transform.parent;
+            Destroy(parentTransform.gameObject);
+        }
     }
 
 }

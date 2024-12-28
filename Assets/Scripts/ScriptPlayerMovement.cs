@@ -16,13 +16,17 @@ public class ScriptPlayerMovement : MonoBehaviour
     // Serialized Vars
     [SerializeField] private float moveSpeed;
     [SerializeField] private float jumpForce;
+    [SerializeField] private float invertTime;
+
 
     // Vars
-    private Vector2 dir;
+    private float initialInvertTime;
+    public Vector2 dir;
     private Collider2D collid;
     private Collider2D[] results;
     private bool grounded;
     private bool climbing;
+    private bool invertX = false;
 
     private void Awake()
     {
@@ -35,6 +39,7 @@ public class ScriptPlayerMovement : MonoBehaviour
 
     private void Start()
     {
+        initialInvertTime = invertTime;
         gameManager.AddScore(0);
     }
 
@@ -75,13 +80,24 @@ public class ScriptPlayerMovement : MonoBehaviour
             transform.rotation = new Quaternion(0, 180, 0, 0);
         } 
         anim.SetFloat("isWalking", Mathf.Abs(dir.x));
- 
+
+        // Inverting X' axis every x time
+        invertTime -= Time.deltaTime;
+        if(invertTime <= 0)
+        {
+            invertX = !invertX;
+            invertTime = initialInvertTime;
+        }
 
     }
 
     // Moving player
     private void FixedUpdate()
     {
+        if (invertX)
+        {
+            dir.x *= -1f;
+        }
         rb.MovePosition(rb.position + dir * Time.fixedDeltaTime);
     }
 

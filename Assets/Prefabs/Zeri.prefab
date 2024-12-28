@@ -194,8 +194,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c572e224c8eddd34c958817997adfa29, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gameManager: {fileID: 0}
   moveSpeed: 4
   jumpForce: 4
+  invertTime: 4
+  dir: {x: 0, y: 0}
 --- !u!114 &5108108554003284721
 MonoBehaviour:
   m_ObjectHideFlags: 0

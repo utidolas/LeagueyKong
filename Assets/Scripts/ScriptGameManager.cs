@@ -7,6 +7,9 @@ using UnityEngine.SceneManagement;
 
 public class ScriptGameManager : MonoBehaviour
 {
+    // Outer scripts
+    public ScriptDrunkCamera scriptDrunkCamera;
+
     // Score controller
     public TextMeshProUGUI scoreController;
 
@@ -83,5 +86,10 @@ public class ScriptGameManager : MonoBehaviour
         scoreController = GameObject.Find("alcool").GetComponent<TextMeshProUGUI>();
         score += amount;
         scoreController.text = "alcool: " + score + "%";
+
+        // 'Drunk' effect, 2% 
+        scriptDrunkCamera = FindObjectOfType<ScriptDrunkCamera>();
+        scriptDrunkCamera.waveAmplitude = score * 0.02f;
+        scriptDrunkCamera.shakeIntensity = score * 0.02f;
     }
 }

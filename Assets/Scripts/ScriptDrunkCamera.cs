@@ -4,46 +4,41 @@ using UnityEngine;
 
 public class ScriptDrunkCamera : MonoBehaviour
 {
-    public float rotationJitter = 0.5f;
-    public float positionJitter = 0.1f;
-    public float jitterSpeed = 5f;
+    // Outer scripts
+    public ScriptGameManager gameManager;
 
-    public float swayAmount = 2f; // Strength of the sway
-    public float swayFrequency = 0.5f; // How often it sways
+    // Public vars
+    public float waveSpeed = 1.5f;
+    public float waveAmplitude;
+    public float shakeIntensity;
+    public float shakeFrequency = 8f;
 
+    private Vector3 originalPosition;
+    private float waveOffset;
 
-    private Vector3 initialPosition;
-    private Quaternion initialRotation;
-
-
-    void Start()
+    private void Awake()
     {
-        initialPosition = transform.position;
-        initialRotation = transform.rotation;
-
+        gameManager = GetComponent<ScriptGameManager>();
     }
 
-    void Update()
+    private void Start()
     {
-        // Swaying motion (using sine waves)
-        float swayX = Mathf.Sin(Time.time * swayFrequency) * swayAmount;
-        float swayY = Mathf.Cos(Time.time * swayFrequency * 0.75f) * swayAmount * 0.5f; // Slightly different frequency and amplitude
+        originalPosition = transform.position;  
+        waveOffset = Random.value * Mathf.PI * 2; // Randomize wave start
+    }
 
-        // Rotation Jitter
-        float xRot = Mathf.PerlinNoise(Time.time * jitterSpeed, 0) * rotationJitter;
-        float yRot = Mathf.PerlinNoise(0, Time.time * jitterSpeed) * rotationJitter;
+    private void Update()
+    {
+        // Wave effect 
+        float waveX = Mathf.Sin(Time.time * waveSpeed + waveOffset) * waveAmplitude;
+        float waveY = Mathf.Cos(Time.time * waveSpeed + waveOffset) * waveAmplitude; // Cos for Y
+        Vector3 waveOffsetVector = new Vector3(waveX, waveY, 0);
 
+        // Shake effect 
+        float shake = Mathf.PerlinNoise(Time.time * shakeFrequency, 0f) * 2 - 1;
+        Vector3 shakeOffsetVector = new Vector3(shake, shake, 0f) * shakeIntensity;
 
-
-        transform.rotation = initialRotation * Quaternion.Euler(xRot + swayX, yRot + swayY, 0f);
-
-
-        float xPos = Mathf.PerlinNoise(Time.time * jitterSpeed * 2, 0) * positionJitter;
-        float yPos = Mathf.PerlinNoise(0, Time.time * jitterSpeed * 2) * positionJitter;
-
-
-
-        transform.position = initialPosition + new Vector3(xPos, yPos, 0f) + new Vector3(swayX * 0.2f, swayY * 0.2f, 0); // Added sway influence
-
+        // Combine and apply offsets 
+        transform.position = originalPosition + waveOffsetVector + shakeOffsetVector;
     }
 }
