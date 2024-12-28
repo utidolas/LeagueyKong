@@ -8,6 +8,7 @@ TagManager:
   - LeftGround
   - Obstacle
   - ScoreCounter
+  - Score
   layers:
   - Default
   - TransparentFX
