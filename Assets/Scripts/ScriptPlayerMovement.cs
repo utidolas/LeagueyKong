@@ -103,7 +103,7 @@ public class ScriptPlayerMovement : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.CompareTag("Obstacle"))
+        if (collision.gameObject.CompareTag("Obstacle") || collision.gameObject.CompareTag("Destroy"))
         {
             enabled = false;
             FindObjectOfType<ScriptGameManager>().LevelFailed();
